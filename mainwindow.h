@@ -28,7 +28,6 @@ public:
 
 public slots:
     void advance();
-
     void loadLevel1();
     void loadLevel2();
     void loadLevel3();
@@ -39,6 +38,9 @@ public slots:
     void loadLevel8();
     void loadLevel9();
     void loadLevel10();
+
+    void restartSlot();
+    void exitSlot();
 private:
     Ui::MainWindow     *ui;
     /**
@@ -59,6 +61,8 @@ private:
     Goal* mainGoal;
 
     b2World* world;
+
+    int currentLevel;
 };
 
 #endif // MAINWINDOW_H

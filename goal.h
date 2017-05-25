@@ -26,6 +26,7 @@ public:
      */
     Goal(QPointF initPos);
 
+    ~Goal();
     /**
      * @brief releaseAction - processing the interact
      */

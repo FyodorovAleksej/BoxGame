@@ -19,6 +19,12 @@ Lamp::Lamp(qreal radius, QPointF initPos, bool on)
 
 Lamp::~Lamp()
 {
+    if (this->timer != NULL)
+    {
+        //this->timer->stop();
+        //delete timer;
+        timer = NULL;
+    }
 }
 
 QPointF Lamp::getLight()

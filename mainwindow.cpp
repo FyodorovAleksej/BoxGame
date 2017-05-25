@@ -7,6 +7,7 @@
 void MainWindow::loadLevel1()
 {
     qDebug() << "level 1";
+    currentLevel = 1;
     scene->clearShadows();
     scene->setSceneRect(scene->itemsBoundingRect());
     ui->graphicsView->setSceneRect(scene->sceneRect());
@@ -38,6 +39,9 @@ void MainWindow::loadLevel1()
 void MainWindow::loadLevel2()
 {
     qDebug() << "level 2";
+
+    currentLevel = 2;
+
     scene->clearShadows();
 
     scene->addGround(new GroundRect(world,QSizeF(4,0.5f ), QPointF(0, 3), 0, true));
@@ -51,12 +55,17 @@ void MainWindow::loadLevel2()
     Goal* goal = new Goal(QPointF(0.0f,-2.2f));
     scene->getHero()->addGoal(goal);
     scene->addGoal(goal);
+
+    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel2()));
+
     this->mainGoal = goal;
     connect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel3()));
 }
 void MainWindow::loadLevel3()
 {
     qDebug() << "level 3";
+    currentLevel = 3;
+
     scene->clearShadows();
 
     scene->addGround(new GroundRect(world,QSizeF(4,0.5f ), QPointF(0, 3), 0, true));
@@ -74,6 +83,7 @@ void MainWindow::loadLevel3()
     Goal* goal = new Goal(QPointF(10.0f,-1.0f));
     scene->getHero()->addGoal(goal);
     scene->addGoal(goal);
+    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel3()));
     this->mainGoal = goal;
 
     connect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel4()));
@@ -81,11 +91,13 @@ void MainWindow::loadLevel3()
 void MainWindow::loadLevel4()
 {
     qDebug() << "level 4";
+    currentLevel = 4;
+
     scene->clearShadows();
 
     scene->addGround(new GroundRect(world,QSizeF(1,0.25f ), QPointF(0, 3), 0, false));
-    scene->addGround(new GroundRect(world,QSizeF(0.25,2.0f ), QPointF(-2.125, 2.5f), 0, false));
-    scene->addGround(new GroundRect(world,QSizeF(0.25f,2.0f ), QPointF(2.125, 2.5f), 0, false));
+    scene->addGround(new GroundRect(world,QSizeF(0.25,1.0f ), QPointF(-2.125, 2.75f), 0, false));
+    scene->addGround(new GroundRect(world,QSizeF(0.25f,1.0f ), QPointF(2.125, 2.75f), 0, false));
     scene->addGround(new GroundRect(world,QSizeF(1.5f,0.25f ), QPointF(1.25, 3.00f), 0, true));
     scene->addGround(new GroundRect(world,QSizeF(1.5f, 0.25f), QPointF(-1.25, 3.00f), 0, true));
     scene->addGround(new GroundRect(world,QSizeF(3.00f, 0.25f), QPointF(0, 0.00f), 0, true));
@@ -102,60 +114,60 @@ void MainWindow::loadLevel4()
     Goal* goal = new Goal(QPointF(0.0f,-3.0f));
     scene->getHero()->addGoal(goal);
     scene->addGoal(goal);
+    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel4()));
     this->mainGoal = goal;
     connect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel5()));
 }
 void MainWindow::loadLevel5()
 {
+    qDebug() << "level 5";
+
+
+    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel5()));
+    currentLevel = 5;
+
+
 
     scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel6()
 {
-
-    foreach(b2Body* body, scene->getBodies())
-    {
-        world->DestroyBody(body);
-    }
+    qDebug() << "level 6";
+    currentLevel = 6;
+    scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel7()
 {
 
-    foreach(b2Body* body, scene->getBodies())
-    {
-        world->DestroyBody(body);
-    }
+    qDebug() << "level 7";
+    currentLevel = 7;
+    scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel8()
 {
-
-    foreach(b2Body* body, scene->getBodies())
-    {
-        world->DestroyBody(body);
-    }
+    qDebug() << "level 8";
+    currentLevel = 8;
+    scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel9()
 {
-
-    foreach(b2Body* body, scene->getBodies())
-    {
-        world->DestroyBody(body);
-    }
+    qDebug() << "level 9";
+    currentLevel = 9;
+    scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel10()
 {
-
-    foreach(b2Body* body, scene->getBodies())
-    {
-        world->DestroyBody(body);
-    }
+    qDebug() << "level 10";
+    currentLevel = 10;
+    scene->clearShadows();
     scene->clear();
 }
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -167,7 +179,10 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new Scene(0,0,8,6,world);
     ui->centralWidget->showFullScreen();
     ui->graphicsView->setScene(scene);  /// Устанавливаем графическую сцену в graphicsView
+    currentLevel = 1;
 
+    connect(scene, SIGNAL(exitSignal()), this, SLOT(exitSlot()));
+    connect(scene, SIGNAL(restartSignal()), this, SLOT(restartSlot()));
     loadLevel1();
 
     frameTimer = new QTimer(this);
@@ -186,6 +201,73 @@ MainWindow::~MainWindow()
 void MainWindow::advance()
 {
     this->ui->graphicsView->centerOn(hero->pos());
+}
+
+void MainWindow::exitSlot()
+{
+    this->close();
+}
+
+void MainWindow::restartSlot()
+{
+    switch(currentLevel)
+    {
+    case 1:
+    {
+        loadLevel1();
+        break;
+    }
+    case 2:
+    {
+        loadLevel2();
+        break;
+    }
+    case 3:
+    {
+        loadLevel3();
+        break;
+    }
+    case 4:
+    {
+        loadLevel4();
+        break;
+    }
+    case 5:
+    {
+        loadLevel5();
+        break;
+    }
+    case 6:
+    {
+        loadLevel6();
+        break;
+    }
+    case 7:
+    {
+        loadLevel7();
+        break;
+    }
+    case 8:
+    {
+        loadLevel8();
+        break;
+    }
+    case 9:
+    {
+        loadLevel9();
+        break;
+    }
+    case 10:
+    {
+        loadLevel10();
+        break;
+    }
+    default:
+    {
+        loadLevel1();
+        break;
+    }
+    }
 }
 
 

@@ -11,6 +11,7 @@
 #include"QKeyEvent"
 #include"QDebug"
 #include <QMutex>
+#include <QMainWindow>
 #include"goal.h"
 
 /**
@@ -101,6 +102,10 @@ public:
     QGraphicsPolygonItem* createShadow(QGraphicsLineItem* line1, QGraphicsLineItem* line2);
 
 
+signals:
+    void restartSignal();
+    void exitSignal();
+
 public slots:
     /**
      * @brief advance - the step of the game
@@ -128,6 +133,9 @@ private:
       */
      CircleObject *hero;
 
+
+
+
      /**
       * @brief shadowableList - all objects, that can be creating shadow
       */
@@ -143,7 +151,7 @@ private:
       */
      QList<b2Body*> *bodyes;
 
-     QList<b2Body*> *otherBodyes;
+     QList<QGraphicsItem*> *otherItems;
 
      /**
       * @brief active - shadows is active?

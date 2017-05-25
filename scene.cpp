@@ -20,34 +20,78 @@ Scene::Scene(qreal x,qreal y, qreal width, qreal height, b2World *world)
     this->pointsList = new QList<QPointF>;
     this->lineList = new QList<QGraphicsItem*>;
     this->bodyes = new QList<b2Body*>;
-    this->otherBodyes = new QList<b2Body*>;
+    this->otherItems = new QList<QGraphicsItem*>;
     this->mutex = new QMutex();
+    this->hero = NULL;
 }
 
 Scene::~Scene()
 {
-    /*qDebug() << "deleting scene";
-    delete pointsList;
-    foreach (QGraphicsItem* item, *lineList) {
-        this->removeItem(item);
-        delete item;
+    qDebug() << "deleting scene";
+
+    if (pointsList != NULL)
+    {
+        delete pointsList;
+        pointsList = NULL;
     }
-    delete lineList;
-
-    delete hero;
-
-    delete shadowableList;
-
-
-    delete lightableList;
-
-    foreach (b2Body* item, *bodyes) {
-        world->DestroyBody(item);
-        // delete item;
+    if (lineList != NULL)
+    {
+        foreach (QGraphicsItem* item, *lineList) {
+            this->removeItem(item);
+            delete item;
+        }
+        delete lineList;
+        lineList = NULL;
     }
-    delete bodyes;
-    delete world;
+
+    if (hero != NULL)
+    {
+        delete hero;
+        hero = NULL;
+    }
+
+    if (shadowableList != NULL)
+    {
+        delete shadowableList;
+        shadowableList = NULL;
+    }
+
+    if (lightableList != NULL)
+    {
+        delete lightableList;
+        lightableList = NULL;
+    }
+
+    /*if (world != NULL)
+    {
+        if (world->GetBodyCount() > 0)
+        {
+            b2Body* node = world->GetBodyList();
+            while(node != NULL)
+            {
+                b2Body* b = node;
+                node = node->GetNext();
+                world->DestroyBody(b);
+            }
+        }
+        delete world;
+        world = NULL;
+    }
     */
+
+    if (bodyes != NULL)
+    {
+        delete bodyes;
+        bodyes = NULL;
+    }
+
+    if (otherItems != NULL)
+    {
+        delete otherItems;
+        otherItems = NULL;
+    }
+
+    //delete world;
 }
 
 CircleObject *Scene::getHero()
@@ -64,67 +108,89 @@ void Scene::setHero(CircleObject *hero)
 void Scene::advance()
 {
     qDebug() << "advance before mutex";
-    world->Step(1.00f/60.00,6,2);
+    if (world != NULL)
+    {
+        world->Step(1.00f/60.00,6,2);
+    }
     QGraphicsScene::advance();
-    if (mutex->try_lock())
+  //  this->update();
+    mutex->lock();
     {
-    qDebug() << "advance after mutex";
-    if (!active)
-    {
-        foreach (b2Body* b, *bodyes) {
-            b->SetActive(true);
-        }
-    }
-
-    if (active)
-    {
-        if (this->bodyes->size() != 0)
+        qDebug() << "advance after mutex";
+        if (!active)
         {
-            foreach (b2Body* b, *bodyes) {
-                this->world->DestroyBody(b);
-            }
-            bodyes->clear();
-        }
-
-        foreach (QGraphicsItem* line, *lineList) {
-            this->removeItem(line);
-        }
-        lineList->clear();
-        //qDebug() << "size of line" << lineList->size();
-        //qDebug() << "size of bodyes" << bodyes->size();
-        //qDebug() << "size of shadowable" << shadowableList->size();
-        //qDebug() << "size of lighting" << lightableList->size();
-        foreach (Lightable* light, *this->lightableList)
-        {
-            if (light->isActive())
+            if (bodyes != NULL)
             {
-                foreach (Shadowable *rect, *this->shadowableList)
-                {
-                    if (rect->isActive())
-                    {
-                        pointsList->append(*(rect->addShadow(light->getLight())));
-                    }
+                foreach (b2Body* b, *bodyes) {
+                    b->SetActive(true);
                 }
-                int i = 0;
-                QGraphicsLineItem *lastLine = NULL;
-                foreach (QPointF point, *pointsList) {
-                    i++;
-                    QGraphicsLineItem *line = this->createLine(light->getLight(), point);
-                    if (i % 2 == 0)
-                    {
-                        QGraphicsPolygonItem* item = createShadow(line,lastLine);
-                        item->setBrush(QBrush(QColor(123,123,123,75)));
-                        this->addItem(item);
-                        lineList->append(item);
-                    }
-                    lastLine=line;
-                }
-
-                pointsList->clear();
             }
         }
-    }
-    mutex->unlock();
+
+        if (active)
+        {
+            if (bodyes != NULL)
+            {
+                if (this->bodyes->size() != 0)
+                {
+                    foreach (b2Body* b, *bodyes) {
+                        this->world->DestroyBody(b);
+                    }
+                    bodyes->clear();
+                }
+            }
+
+            if (lineList != NULL)
+            {
+                foreach (QGraphicsItem* line, *lineList) {
+                    this->removeItem(line);
+                }
+                lineList->clear();
+            }
+            //qDebug() << "size of line" << lineList->size();
+            //qDebug() << "size of bodyes" << bodyes->size();
+            //qDebug() << "size of shadowable" << shadowableList->size();
+            //qDebug() << "size of lighting" << lightableList->size();
+            if (lightableList != NULL)
+            {
+                foreach (Lightable* light, *this->lightableList)
+                {
+                    if (light->isActive())
+                    {
+                        foreach (Shadowable *rect, *this->shadowableList)
+                        {
+                            if (rect->isActive())
+                            {
+                                if (pointsList != NULL)
+                                {
+                                    pointsList->append(*(rect->addShadow(light->getLight())));
+                                }
+                            }
+                        }
+                        int i = 0;
+                        QGraphicsLineItem *lastLine = NULL;
+
+                        if (pointsList != NULL)
+                        {
+                            foreach (QPointF point, *pointsList) {
+                                i++;
+                                QGraphicsLineItem *line = this->createLine(light->getLight(), point);
+                                if (i % 2 == 0)
+                                {
+                                    QGraphicsPolygonItem* item = createShadow(line,lastLine);
+                                    item->setBrush(QBrush(QColor(123,123,123,75)));
+                                    this->addItem(item);
+                                    lineList->append(item);
+                                }
+                                lastLine=line;
+                            }
+                            pointsList->clear();
+                        }
+                    }
+                }
+            }
+        }
+        mutex->unlock();
     }
 }
 
@@ -137,7 +203,10 @@ void Scene::keyPressEvent(QKeyEvent *event)
     {
         if (!event->isAutoRepeat())
         {
-            this->hero->upPressed();
+            if (hero != NULL)
+            {
+                this->hero->upPressed();
+            }
         }
         break;
     }
@@ -145,7 +214,10 @@ void Scene::keyPressEvent(QKeyEvent *event)
     {
         if (!event->isAutoRepeat())
         {
-            this->hero->leftPressed();
+            if (hero != NULL)
+            {
+                this->hero->leftPressed();
+            }
         }
         break;
     }
@@ -153,7 +225,10 @@ void Scene::keyPressEvent(QKeyEvent *event)
     {
         if (!event->isAutoRepeat())
         {
-            this->hero->rightPressed();
+            if (hero != NULL)
+            {
+                this->hero->rightPressed();
+            }
         }
         break;
     }
@@ -173,7 +248,10 @@ void Scene::keyReleaseEvent(QKeyEvent *event)
     {
         if (!event->isAutoRepeat())
         {
-            this->hero->upReleased();
+            if (hero != NULL)
+            {
+                this->hero->upReleased();
+            }
         }
         break;
     }
@@ -181,7 +259,10 @@ void Scene::keyReleaseEvent(QKeyEvent *event)
     {
         if (!event->isAutoRepeat())
         {
-            this->hero->leftReleased();
+            if (hero != NULL)
+            {
+                this->hero->leftReleased();
+            }
         }
         break;
     }
@@ -189,7 +270,10 @@ void Scene::keyReleaseEvent(QKeyEvent *event)
     {
         if (!event->isAutoRepeat())
         {
-            this->hero->rightReleased();
+            if (hero != NULL)
+            {
+                this->hero->rightReleased();
+            }
         }
         break;
     }
@@ -198,6 +282,22 @@ void Scene::keyReleaseEvent(QKeyEvent *event)
         if(!event->isAutoRepeat())
         {
             active = !active;
+        }
+        break;
+    }
+    case Qt::Key_R:
+    {
+        if(!event->isAutoRepeat())
+        {
+            emit (restartSignal());
+        }
+        break;
+    }
+    case Qt::Key_Escape:
+    {
+        if(!event->isAutoRepeat())
+        {
+            emit (exitSignal());
         }
         break;
     }
@@ -220,20 +320,33 @@ QList<b2Body*> Scene::getBodies()
     return *this->bodyes;
 }
 
-void Scene::addHero(CircleObject *hero)
+void Scene::addHero(CircleObject *newHero)
 {
     qDebug() << "adding hero";
-    this->hero = hero;
-    this->addItem(hero);
-    this->lightableList->append(hero);
-    this->otherBodyes->append(hero->getBody());
+    mutex->lock();
+    this->addItem(newHero);
+    this->lightableList->append(newHero);
+    if (otherItems != NULL)
+    {
+        this->otherItems->append(newHero);
+    }
+    mutex->unlock();
 }
+
 void Scene::addGround(GroundRect *rect)
 {
     qDebug() << "adding ground";
+    mutex->lock();
     this->addItem(rect);
-    this->shadowableList->append(rect);
-    this->otherBodyes->append(rect->getBody());
+    if (shadowableList != NULL)
+    {
+        this->shadowableList->append(rect);
+    }
+    if (otherItems != NULL)
+    {
+        otherItems->append(rect);
+    }
+    mutex->unlock();
 }
 
 QGraphicsLineItem* Scene::createLine(QPointF light, QPointF point)
@@ -333,11 +446,17 @@ QGraphicsPolygonItem* Scene::createShadow(QGraphicsLineItem* line1, QGraphicsLin
         b2BodyDef bodyDef;
         bodyDef.type = b2_staticBody;
 
-        b2Body* body = this->world->CreateBody(&bodyDef);
-        body->CreateFixture(&polygon, 0.0f);
-        this->bodyes->append(body);
+        if (world != NULL)
+        {
+            b2Body* body = this->world->CreateBody(&bodyDef);
+            body->CreateFixture(&polygon, 0.0f);
 
-        body->SetActive(false);
+            if (bodyes != NULL)
+            {
+                this->bodyes->append(body);
+            }
+            body->SetActive(false);
+        }
     }
     return new QGraphicsPolygonItem(QPolygonF(points));
 }
@@ -346,12 +465,18 @@ void Scene::addLamp(Lamp* light)
 {
     qDebug() << "adding lamp";
     this->addItem(light);
-    this->lightableList->append(light);
+
+    if (lightableList != NULL)
+    {
+        this->lightableList->append(light);
+    }
+    otherItems->append(light);
 }
 void Scene::addGoal(Goal* goal)
 {
     qDebug() << "adding goal";
     this->addItem(goal);
+    otherItems->append(goal);
 }
 
 void Scene::clearShadows()
@@ -360,43 +485,81 @@ void Scene::clearShadows()
     mutex->lock();
     this->active = true;
     qDebug() << "clear shadows after mutex";
-    //delete pointsList;
-    pointsList->clear();
-    foreach (QGraphicsItem* item, *lineList) {
-        this->removeItem(item);
-        //delete item;
+
+    if (pointsList != NULL)
+    {
+        pointsList->clear();
     }
+
+    if (lineList != NULL)
+    {
+        foreach (QGraphicsItem* item, *lineList)
+        {
+            this->removeItem(item);
+           delete item;
+        }
+        lineList->clear();
+    }
+
     //delete lineList;
-    lineList->clear();
     //delete hero;
 
     //delete shadowableList;
-    shadowableList->clear();
+    if (shadowableList != NULL)
+    {
+        shadowableList->clear();
+    }
 
     //delete lightableList;
-    lightableList->clear();
+
+    if (lightableList != NULL)
+    {
+        lightableList->clear();
+    }
 
     //this->clear();
-    if (world->GetBodyCount() > 0)
+    if (world != NULL)
     {
-        b2Body* node = world->GetBodyList();
-        while(node != NULL)
+        if (world->GetBodyCount() > 0)
         {
-            b2Body* b = node;
-            node = node->GetNext();
-            world->DestroyBody(b);
+            b2Body* node = world->GetBodyList();
+            while(node != NULL)
+            {
+                b2Body* b = node;
+                node = node->GetNext();
+                world->DestroyBody(b);
+            }
         }
     }
     //delete bodyes;
-    bodyes->clear();
+
+    if (bodyes != NULL)
+    {
+        bodyes->clear();
+    }
 
     //delete otherBodyes;
-    otherBodyes->clear();
+
+    if (otherItems != NULL)
+    {
+        foreach (QGraphicsItem* item, *otherItems) {
+           this->removeItem(item);
+        }
+        otherItems->clear();
+    }
+
+    if (hero != NULL)
+    {
+        removeItem(hero);
+        delete hero;
+        hero = NULL;
+    }
 
     qDebug() << "2d items - " << world->GetBodyCount();
 
-    this->clear();
-    this->update();
+   // this->clear();
+    //this->update();
+
     /*pointsList= new QList<QPointF>;
     lineList= new QList<QGraphicsItem*>;
     shadowableList= new QList<Shadowable*>;
@@ -404,5 +567,6 @@ void Scene::clearShadows()
     bodyes = new QList<b2Body*>;
     otherBodyes = new QList<b2Body*>;
     */
+
     mutex->unlock();
 }

@@ -64,7 +64,11 @@ GroundRect::~GroundRect()
 {
   //  body->GetWorld()->DestroyBody(body);
    // delete this->body;
-   delete this->points;
+    if (this->points != NULL)
+    {
+        delete points;
+        points = NULL;
+    }
 }
 
 QList<QPointF>* GroundRect::getPoints()

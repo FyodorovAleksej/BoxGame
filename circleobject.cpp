@@ -22,14 +22,37 @@ CircleObject::CircleObject(b2World *world, qreal radius, QPointF initPos)
     shape.m_radius = radius;
 
     b2Fixture *fixture = body->CreateFixture(&shape,1.0f);
-    fixture->SetRestitution(0.1);
+    fixture->SetRestitution(0.2);
+
+    this->goals = new QList<Goal*>;
+    this->leftTimer = new QTimer(this);
+    this->rightTimer = new QTimer(this);
+
+    connect(leftTimer,SIGNAL(timeout()),this,SLOT(leftForce()));
+    connect(rightTimer, SIGNAL(timeout()),this, SLOT (rightForce()));
 }
 CircleObject::~CircleObject()
 {
     //body->GetWorld()->DestroyBody(body);
-    delete this->leftTimer;
-    delete this->rightTimer;
-    // delete this->body;
+    if (leftTimer != NULL)
+    {
+        //leftTimer->stop();
+        //delete this->leftTimer;
+        leftTimer = NULL;
+    }
+    if (rightTimer != NULL)
+    {
+        //rightTimer->stop();
+        //delete this->rightTimer;
+        rightTimer = NULL;
+    }
+    if (goals != NULL)
+    {
+        this->goals->clear();
+        delete goals;
+        goals = NULL;
+    }
+
 }
 
 void CircleObject::upPressed()
@@ -42,14 +65,10 @@ void CircleObject::upPressed()
 }
 void CircleObject::leftPressed()
 {
-    this->leftTimer = new QTimer(this);
-    connect(leftTimer,SIGNAL(timeout()),this,SLOT(leftForce()));
     leftTimer->start(10);
 }
 void CircleObject::rightPressed()
 {
-    this->rightTimer = new QTimer(this);
-    connect(rightTimer, SIGNAL(timeout()),this, SLOT (rightForce()));
     rightTimer->start(10);
 }
 
@@ -74,11 +93,11 @@ void CircleObject::rightReleased()
 
 void CircleObject::leftForce()
 {
-    this->body->ApplyForceToCenter(b2Vec2(-0.30f, 0.00f),true);
+        this->body->ApplyForceToCenter(b2Vec2(-0.5f, 0.00f), false);
 }
 void CircleObject::rightForce()
 {
-    this->body->ApplyForceToCenter(b2Vec2(0.30f, 0.00f),true);
+        this->body->ApplyForceToCenter(b2Vec2(0.5f, 0.00f), false);
 }
 
 void CircleObject::advance(int phase)
@@ -95,14 +114,15 @@ void CircleObject::advance(int phase)
                 continue;
             jump = true;
             action = false;
-        }
+        }        
 
         QList<QGraphicsItem*> foundInCenter = scene()->items(QPolygonF()<<mapToScene(25,25)<<mapToScene(-25,25)<<mapToScene(-25,-25)<<mapToScene(25,-25));
         foreach (QGraphicsItem *item, foundInCenter)
         {
             if (item == this)
                 continue;
-            foreach (Goal* goal, goals)
+            if (goals != NULL && goals->size() > 0)
+            foreach (Goal* goal, *goals)
             {
                 if (goal == item)
                 {
@@ -123,7 +143,7 @@ QPointF CircleObject::getLight()
 }
 void CircleObject::addGoal(Goal* item)
 {
-    this->goals.append(item);
+    this->goals->append(item);
 }
 bool CircleObject::isActive()
 {

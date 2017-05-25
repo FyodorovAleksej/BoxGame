@@ -11,6 +11,15 @@ Goal::Goal( QPointF initPos)
     setBrush(QBrush(Qt::red));
     setPos(Common::fromB2(initPos.x()),Common::fromB2(initPos.y()));
 }
+Goal::~Goal()
+{
+    if (timer != NULL)
+    {
+        //timer->stop();
+        //delete timer;
+        timer = NULL;
+    }
+}
 
 void Goal::releaseAction()
 {

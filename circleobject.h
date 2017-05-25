@@ -132,7 +132,7 @@ private:
     /**
      * @brief goals - the list of all interactive Objects
      */
-    QList<Goal*> goals;
+    QList<Goal*> *goals;
 
     /**
      * @brief jump - can the hero jump now?
