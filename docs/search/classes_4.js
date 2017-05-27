@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['scene',['Scene',['../class_scene.html',1,'']]],
-  ['shadowable',['Shadowable',['../class_shadowable.html',1,'']]]
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]]
 ];

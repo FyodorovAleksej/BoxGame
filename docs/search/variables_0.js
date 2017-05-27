@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['active',['active',['../class_goal.html#a1a03ec3a54cdb704ba5247b1dd165097',1,'Goal']]]
+  ['active',['active',['../class_interactavable.html#a3d325c397b4cbc837576251a7dcb18ff',1,'Interactavable']]]
 ];

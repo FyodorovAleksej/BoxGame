@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]]
+  ['lamp',['Lamp',['../class_lamp.html',1,'']]],
+  ['lightable',['Lightable',['../class_lightable.html',1,'']]]
 ];

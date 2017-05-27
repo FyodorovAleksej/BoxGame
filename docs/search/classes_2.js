@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['lamp',['Lamp',['../class_lamp.html',1,'']]],
-  ['lightable',['Lightable',['../class_lightable.html',1,'']]]
+  ['interactavable',['Interactavable',['../class_interactavable.html',1,'']]]
 ];
