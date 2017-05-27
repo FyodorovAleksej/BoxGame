@@ -1,9 +1,10 @@
 #include "goal.h"
 #include<qDebug>
-Goal::Goal(QObject *parent) : QObject(parent)
+Goal::Goal(QObject* parent):QObject(parent)
 {
     active = true;
 }
+
 Goal::Goal( QPointF initPos)
 {
     this->active = true;
@@ -15,12 +16,13 @@ Goal::~Goal()
 {
     if (timer != NULL)
     {
-        //timer->stop();
-        //delete timer;
         timer = NULL;
     }
 }
 
+/**
+ * @brief Goal::releaseAction - the processing the interaction
+ */
 void Goal::releaseAction()
 {
     if (active)
@@ -32,6 +34,10 @@ void Goal::releaseAction()
     active = false;
     }
 }
+
+/**
+ * @brief Goal::stopActive - cooldown of the activation
+ */
 void Goal::stopActive()
 {
     this->active = true;

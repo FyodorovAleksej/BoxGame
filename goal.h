@@ -9,50 +9,46 @@
 #include<QGraphicsScene>
 #include<QTimer>
 #include"common.h"
+#include "interactavable.h"
 
 /**
  * @brief The Goal class - the class of interactive object
  * QGraphicsEllipseItem - this Object is Circle in QGraohicsScene
  */
-class Goal : public QObject, public QGraphicsEllipseItem
+class Goal : public QObject, public Interactavable
 {
     Q_OBJECT
 public:
-    explicit Goal(QObject *parent = 0);
-
+    explicit Goal(QObject* parent = 0);
     /**
      * @brief Goal - create interactive Object
      * @param initPos - position of interactive Object
      */
     Goal(QPointF initPos);
 
+    /**
+      @brief ~Goal - deleting this interactive object
+      */
     ~Goal();
+
     /**
      * @brief releaseAction - processing the interact
      */
-    virtual void releaseAction();
+    void releaseAction();
 
-protected:
-
-    /**
-     * @brief timer - block this object with some time after interact
-     */
-    QTimer* timer;
-
-    /**
-     * @brief active - this object is interacting now?
-     */
-    bool active;
 signals:
 
+    /**
+     * @brief activeSignal - the signal of activation this interactive object
+     */
     void activeSignal();
+
 public slots:
 
     /**
      * @brief stopActive - reactivate this interactive object
      */
-    virtual void stopActive();
-private:
+    void stopActive();
 };
 
 #endif // GOAL_H

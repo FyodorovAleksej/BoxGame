@@ -1,5 +1,9 @@
 #include "lamp.h"
 #include <QDebug>
+Lamp::Lamp(QObject* parent):QObject(parent)
+{
+}
+
 
 Lamp::Lamp(qreal radius, QPointF initPos, bool on)
 {
@@ -21,8 +25,6 @@ Lamp::~Lamp()
 {
     if (this->timer != NULL)
     {
-        //this->timer->stop();
-        //delete timer;
         timer = NULL;
     }
 }
@@ -50,7 +52,6 @@ void Lamp::releaseAction()
             setBrush(Qt::gray);
         }
         this->update();
-        //update(pos().x() - radius, pos().y() - radius, 2*radius, 2*radius);
         this->timer = new QTimer(this);
         this->ready = false;
         timer->singleShot(300,this, SLOT(stopActive()));

@@ -30,7 +30,10 @@ SOURCES += main.cpp\
     circleobject.cpp \
     lightable.cpp \
     shadowable.cpp \
-    scene.cpp
+    scene.cpp \
+    lamp.cpp \
+    goal.cpp \
+    interactavable.cpp
 
 HEADERS  += mainwindow.h \
     groundrect.h \
@@ -38,7 +41,10 @@ HEADERS  += mainwindow.h \
     circleobject.h \
     lightable.h \
     shadowable.h \
-    scene.h
+    scene.h \
+    lamp.h \
+    goal.h \
+    interactavable.h
 
 FORMS    += mainwindow.ui
 

@@ -44,6 +44,10 @@ public:
      */
     QList<QPointF>* addShadow(QPointF light);
 
+    /**
+     * @brief getBody - geting physic body from 2dBox world
+     * @return b2Body* - the physic 2dBox body
+     */
     b2Body* getBody();
 private:
 

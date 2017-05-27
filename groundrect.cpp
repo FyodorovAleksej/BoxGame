@@ -62,8 +62,6 @@ GroundRect::GroundRect(b2World *world, QSizeF size, QPointF initPos, qreal angle
 
 GroundRect::~GroundRect()
 {
-  //  body->GetWorld()->DestroyBody(body);
-   // delete this->body;
     if (this->points != NULL)
     {
         delete points;

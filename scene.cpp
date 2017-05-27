@@ -12,7 +12,7 @@ qreal abs(qreal x)
 Scene::Scene(qreal x,qreal y, qreal width, qreal height, b2World *world)
     : QGraphicsScene(Common::fromB2(x),Common::fromB2(y),Common::fromB2(width),Common::fromB2(height))
 {
-    qDebug() << "creating scene";
+    //qDebug() << "creating scene";
     active = true;
     this->world = world;
     this->shadowableList = new QList<Shadowable*>;
@@ -27,7 +27,7 @@ Scene::Scene(qreal x,qreal y, qreal width, qreal height, b2World *world)
 
 Scene::~Scene()
 {
-    qDebug() << "deleting scene";
+    //qDebug() << "deleting scene";
 
     if (pointsList != NULL)
     {
@@ -62,23 +62,6 @@ Scene::~Scene()
         lightableList = NULL;
     }
 
-    /*if (world != NULL)
-    {
-        if (world->GetBodyCount() > 0)
-        {
-            b2Body* node = world->GetBodyList();
-            while(node != NULL)
-            {
-                b2Body* b = node;
-                node = node->GetNext();
-                world->DestroyBody(b);
-            }
-        }
-        delete world;
-        world = NULL;
-    }
-    */
-
     if (bodyes != NULL)
     {
         delete bodyes;
@@ -96,18 +79,18 @@ Scene::~Scene()
 
 CircleObject *Scene::getHero()
 {
-    qDebug() << "getting hero";
+    //qDebug() << "getting hero";
     return this->hero;
 }
 void Scene::setHero(CircleObject *hero)
 {
-    qDebug() << "setting hero";
+    //qDebug() << "setting hero";
     this->hero = hero;
 }
 
 void Scene::advance()
 {
-    qDebug() << "advance before mutex";
+    //qDebug() << "advance before mutex";
     if (world != NULL)
     {
         world->Step(1.00f/60.00,6,2);
@@ -116,7 +99,7 @@ void Scene::advance()
   //  this->update();
     mutex->lock();
     {
-        qDebug() << "advance after mutex";
+        //qDebug() << "advance after mutex";
         if (!active)
         {
             if (bodyes != NULL)
@@ -147,10 +130,10 @@ void Scene::advance()
                 }
                 lineList->clear();
             }
-            //qDebug() << "size of line" << lineList->size();
-            //qDebug() << "size of bodyes" << bodyes->size();
-            //qDebug() << "size of shadowable" << shadowableList->size();
-            //qDebug() << "size of lighting" << lightableList->size();
+            ////qDebug() << "size of line" << lineList->size();
+            ////qDebug() << "size of bodyes" << bodyes->size();
+            ////qDebug() << "size of shadowable" << shadowableList->size();
+            ////qDebug() << "size of lighting" << lightableList->size();
             if (lightableList != NULL)
             {
                 foreach (Lightable* light, *this->lightableList)
@@ -196,7 +179,7 @@ void Scene::advance()
 
 void Scene::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "keyPressEvent";
+    //qDebug() << "keyPressEvent";
     switch(event->key())
     {
     case Qt::Key_Up:
@@ -241,7 +224,7 @@ void Scene::keyPressEvent(QKeyEvent *event)
 }
 void Scene::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug() << "keyReleaseEvent";
+    //qDebug() << "keyReleaseEvent";
     switch(event->key())
     {
     case Qt::Key_Up:
@@ -306,23 +289,23 @@ void Scene::keyReleaseEvent(QKeyEvent *event)
 
 QList<Shadowable*>* Scene::getShadowList()
 {
-    qDebug() << "getting shadow list";
+    //qDebug() << "getting shadow list";
     return this->shadowableList;
 }
 QList<Lightable*>* Scene::getLightList()
 {
-    qDebug() << "getting lightable list";
+    //qDebug() << "getting lightable list";
     return this->lightableList;
 }
 QList<b2Body*> Scene::getBodies()
 {
-    qDebug() << "getting bodies";
+    //qDebug() << "getting bodies";
     return *this->bodyes;
 }
 
 void Scene::addHero(CircleObject *newHero)
 {
-    qDebug() << "adding hero";
+    //qDebug() << "adding hero";
     mutex->lock();
     this->addItem(newHero);
     this->lightableList->append(newHero);
@@ -335,7 +318,7 @@ void Scene::addHero(CircleObject *newHero)
 
 void Scene::addGround(GroundRect *rect)
 {
-    qDebug() << "adding ground";
+    //qDebug() << "adding ground";
     mutex->lock();
     this->addItem(rect);
     if (shadowableList != NULL)
@@ -354,7 +337,7 @@ QGraphicsLineItem* Scene::createLine(QPointF light, QPointF point)
     //qreal x = point.x() - light.x();
     //qreal y = point.y() - light.y();
 
-    qDebug() << "creating line";
+    //qDebug() << "creating line";
     QLineF *line = new QLineF(light,point);
     qreal angle = line->angle();
     //qDebug() << "line angle - " << angle;
@@ -425,7 +408,7 @@ QGraphicsLineItem* Scene::createLine(QPointF light, QPointF point)
 }
 QGraphicsPolygonItem* Scene::createShadow(QGraphicsLineItem* line1, QGraphicsLineItem* line2)
 {
-    qDebug() << "creating shadow";
+    //qDebug() << "creating shadow";
     QVector<QPointF> points;
     points.append(line1->line().p1());
     points.append(line1->line().p2());
@@ -463,7 +446,7 @@ QGraphicsPolygonItem* Scene::createShadow(QGraphicsLineItem* line1, QGraphicsLin
 
 void Scene::addLamp(Lamp* light)
 {
-    qDebug() << "adding lamp";
+    //qDebug() << "adding lamp";
     this->addItem(light);
 
     if (lightableList != NULL)
@@ -474,17 +457,17 @@ void Scene::addLamp(Lamp* light)
 }
 void Scene::addGoal(Goal* goal)
 {
-    qDebug() << "adding goal";
+    //qDebug() << "adding goal";
     this->addItem(goal);
     otherItems->append(goal);
 }
 
 void Scene::clearShadows()
 {
-    qDebug() << "clear shadows before mutex";
+    //qDebug() << "clear shadows before mutex";
     mutex->lock();
     this->active = true;
-    qDebug() << "clear shadows after mutex";
+    //qDebug() << "clear shadows after mutex";
 
     if (pointsList != NULL)
     {
@@ -555,7 +538,7 @@ void Scene::clearShadows()
         hero = NULL;
     }
 
-    qDebug() << "2d items - " << world->GetBodyCount();
+    //qDebug() << "2d items - " << world->GetBodyCount();
 
    // this->clear();
     //this->update();

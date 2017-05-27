@@ -9,14 +9,16 @@
 #include<QGraphicsScene>
 #include"common.h"
 #include"lightable.h"
-#include"goal.h"
+#include"interactavable.h"
 
 /**
  * @brief The Lamp class - the interactive object, that can turn ON/OFF and create shadows for other objects
  */
-class Lamp : public Lightable, public Goal
+class Lamp : public QObject, public Interactavable, public Lightable
 {
+    Q_OBJECT
 public:
+    explicit Lamp(QObject* parent = 0);
 
     /**
      * @brief Lamp - creating lamp
@@ -25,6 +27,10 @@ public:
      * @param on - is ON?
      */
     Lamp(qreal radius, QPointF initPos, bool on);
+
+    /**
+      * @brief ~Lamp - deleting this interactive lamp
+      */
     ~Lamp();
 
     /**
@@ -58,11 +64,6 @@ public slots:
      */
     void stopActive();
 private:
-
-    /**
-     * @brief active - is ON?
-     */
-    bool active;
 
     /**
      * @brief ready - is ready to interact?

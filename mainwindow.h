@@ -42,6 +42,10 @@ public slots:
     void restartSlot();
     void exitSlot();
 private:
+
+    /**
+     * @brief ui - the GUI elements of window
+     */
     Ui::MainWindow     *ui;
     /**
      * @brief scene - scene for this window
@@ -53,15 +57,24 @@ private:
      */
     QTimer* frameTimer;
 
-    CircleObject* hero;
     /**
-     * @brief world - world for the 2dBox physics
+     * @brief hero - the protagonist of this game
      */
+    CircleObject* hero;
 
+    /**
+     * @brief mainGoal - the interactive object, that using as a end of the level
+     */
     Goal* mainGoal;
 
+    /**
+     * @brief world - the 2dBox physic analog of all objects
+     */
     b2World* world;
 
+    /**
+     * @brief currentLevel - the number of current level
+     */
     int currentLevel;
 };
 

@@ -37,6 +37,9 @@ public:
      */
     CircleObject(b2World *world, qreal radius, QPointF initPos);
 
+    /**
+      @brief ~CircleObject deleting object of protagonist
+      */
     ~CircleObject();
 
     /**
@@ -50,13 +53,17 @@ public:
     */
    QPointF getLight();
 
+   /**
+    * @brief getBody - getting the 2dBox body of this object in the 2dBox world
+    * @return b2Body* - the physic body of hero
+    */
    b2Body* getBody();
 
    /**
     * @brief addGoal - adding Object for interact. When collides with him - execute Goal::releaseAction()
     * @param item - the interact object
     */
-   void addGoal(Goal* item);
+   void addInteract(Interactavable* item);
 
    /**
     * @brief isActive - return true
@@ -65,6 +72,9 @@ public:
    bool isActive();
 
 signals:
+   /**
+    * @brief goalAction - signal of interact with some interactive object (Goal)
+    */
    void goalAction();
 
 public slots:
@@ -132,7 +142,7 @@ private:
     /**
      * @brief goals - the list of all interactive Objects
      */
-    QList<Goal*> *goals;
+    QList<Interactavable*> *interacts;
 
     /**
      * @brief jump - can the hero jump now?

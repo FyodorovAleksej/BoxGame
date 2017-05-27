@@ -6,7 +6,7 @@
 
 void MainWindow::loadLevel1()
 {
-    qDebug() << "level 1";
+    //qDebug() << "level 1";
     currentLevel = 1;
     scene->clearShadows();
     scene->setSceneRect(scene->itemsBoundingRect());
@@ -25,10 +25,10 @@ void MainWindow::loadLevel1()
 
     Lamp* lamp = new Lamp(0.1,QPointF(Common::toB2(100.00f),Common::toB2(100.00f)),true);
     scene->addLamp(lamp);
-    scene->getHero()->addGoal(lamp);
+    scene->getHero()->addInteract(lamp);
 
     Goal* goal = new Goal(QPointF(Common::toB2(150.00f), Common::toB2(200.00f)));
-    scene->getHero()->addGoal(goal);
+    scene->getHero()->addInteract(goal);
     scene->addGoal(goal);
     this->mainGoal = goal;
 
@@ -38,7 +38,7 @@ void MainWindow::loadLevel1()
 
 void MainWindow::loadLevel2()
 {
-    qDebug() << "level 2";
+    //qDebug() << "level 2";
 
     currentLevel = 2;
 
@@ -53,17 +53,15 @@ void MainWindow::loadLevel2()
     scene->addHero(scene->getHero());
 
     Goal* goal = new Goal(QPointF(0.0f,-2.2f));
-    scene->getHero()->addGoal(goal);
+    scene->getHero()->addInteract(goal);
     scene->addGoal(goal);
-
-    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel2()));
 
     this->mainGoal = goal;
     connect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel3()));
 }
 void MainWindow::loadLevel3()
 {
-    qDebug() << "level 3";
+    //qDebug() << "level 3";
     currentLevel = 3;
 
     scene->clearShadows();
@@ -77,20 +75,19 @@ void MainWindow::loadLevel3()
     scene->addHero(scene->getHero());
 
     Lamp* lamp = new Lamp(0.1f,QPointF(4.0f,-3.0f),true);
-    scene->getHero()->addGoal(lamp);
+    scene->getHero()->addInteract(lamp);
     scene->addLamp(lamp);
 
     Goal* goal = new Goal(QPointF(10.0f,-1.0f));
-    scene->getHero()->addGoal(goal);
+    scene->getHero()->addInteract(goal);
     scene->addGoal(goal);
-    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel3()));
     this->mainGoal = goal;
 
     connect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel4()));
 }
 void MainWindow::loadLevel4()
 {
-    qDebug() << "level 4";
+    //qDebug() << "level 4";
     currentLevel = 4;
 
     scene->clearShadows();
@@ -108,22 +105,18 @@ void MainWindow::loadLevel4()
     scene->addHero(scene->getHero());
 
     Lamp* lamp = new Lamp(0.1f,QPointF(0.0f,3.3f),true);
-    scene->getHero()->addGoal(lamp);
+    scene->getHero()->addInteract(lamp);
     scene->addLamp(lamp);
 
     Goal* goal = new Goal(QPointF(0.0f,-3.0f));
-    scene->getHero()->addGoal(goal);
+    scene->getHero()->addInteract(goal);
     scene->addGoal(goal);
-    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel4()));
     this->mainGoal = goal;
     connect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel5()));
 }
 void MainWindow::loadLevel5()
 {
-    qDebug() << "level 5";
-
-
-    //disconnect(this->mainGoal, SIGNAL(activeSignal()), this, SLOT(loadLevel5()));
+    //qDebug() << "level 5";
     currentLevel = 5;
 
 
@@ -133,7 +126,7 @@ void MainWindow::loadLevel5()
 }
 void MainWindow::loadLevel6()
 {
-    qDebug() << "level 6";
+    //qDebug() << "level 6";
     currentLevel = 6;
     scene->clearShadows();
     scene->clear();
@@ -141,28 +134,28 @@ void MainWindow::loadLevel6()
 void MainWindow::loadLevel7()
 {
 
-    qDebug() << "level 7";
+    //qDebug() << "level 7";
     currentLevel = 7;
     scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel8()
 {
-    qDebug() << "level 8";
+    //qDebug() << "level 8";
     currentLevel = 8;
     scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel9()
 {
-    qDebug() << "level 9";
+    //qDebug() << "level 9";
     currentLevel = 9;
     scene->clearShadows();
     scene->clear();
 }
 void MainWindow::loadLevel10()
 {
-    qDebug() << "level 10";
+    //qDebug() << "level 10";
     currentLevel = 10;
     scene->clearShadows();
     scene->clear();
