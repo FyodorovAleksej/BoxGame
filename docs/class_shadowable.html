@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BoxGameProject: Shadowable Class Reference</title>
+<title>BoxGame: Shadowable Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">BoxGameProject
-   &#160;<span id="projectnumber">03</span>
+   <div id="projectname">BoxGame
+   &#160;<span id="projectnumber">0.0.3</span>
    </div>
-   <div id="projectbrief">The Shadow game</div>
   </td>
  </tr>
  </tbody>
@@ -67,6 +66,11 @@ $(function() {
 <div class="title">Shadowable Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_shadowable.html" title="The Shadowable class - class of objects, that can create shadows. ">Shadowable</a> class - class of objects, that can create shadows.  
+ <a href="class_shadowable.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="shadowable_8h_source.html">shadowable.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Shadowable:</div>
 <div class="dyncontent">
@@ -79,13 +83,83 @@ Inheritance diagram for Shadowable:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5655410a344fda0f258468de27475593"><td class="memItemLeft" align="right" valign="top"><a id="a5655410a344fda0f258468de27475593"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()=0</td></tr>
+<tr class="memitem:a5655410a344fda0f258468de27475593"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shadowable.html#a5655410a344fda0f258468de27475593">isActive</a> ()=0</td></tr>
+<tr class="memdesc:a5655410a344fda0f258468de27475593"><td class="mdescLeft">&#160;</td><td class="mdescRight">isActive - can this object create shadows?  <a href="#a5655410a344fda0f258468de27475593">More...</a><br /></td></tr>
 <tr class="separator:a5655410a344fda0f258468de27475593"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e6f4d386cd48c6ef39f0bdc85f1ce86"><td class="memItemLeft" align="right" valign="top"><a id="a4e6f4d386cd48c6ef39f0bdc85f1ce86"></a>
-virtual QList&lt; QPointF &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>addShadow</b> (QPointF light)=0</td></tr>
+<tr class="memitem:a4e6f4d386cd48c6ef39f0bdc85f1ce86"><td class="memItemLeft" align="right" valign="top">virtual QList&lt; QPointF &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shadowable.html#a4e6f4d386cd48c6ef39f0bdc85f1ce86">addShadow</a> (QPointF light)=0</td></tr>
+<tr class="memdesc:a4e6f4d386cd48c6ef39f0bdc85f1ce86"><td class="mdescLeft">&#160;</td><td class="mdescRight">addShadow - compute points, that was being important for creating shadow of this object from the current light  <a href="#a4e6f4d386cd48c6ef39f0bdc85f1ce86">More...</a><br /></td></tr>
 <tr class="separator:a4e6f4d386cd48c6ef39f0bdc85f1ce86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="class_shadowable.html" title="The Shadowable class - class of objects, that can create shadows. ">Shadowable</a> class - class of objects, that can create shadows. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4e6f4d386cd48c6ef39f0bdc85f1ce86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6f4d386cd48c6ef39f0bdc85f1ce86">&#9670;&nbsp;</a></span>addShadow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual QList&lt;QPointF&gt;* Shadowable::addShadow </td>
+          <td>(</td>
+          <td class="paramtype">QPointF&#160;</td>
+          <td class="paramname"><em>light</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>addShadow - compute points, that was being important for creating shadow of this object from the current light </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">light</td><td>- current point of Light </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QList&lt;QPointF&gt;* - the list of important points for creating shadow </dd></dl>
+
+<p>Implemented in <a class="el" href="class_ground_rect.html#a61ff4cc62e4cdf28fc93cc26e974a96d">GroundRect</a>.</p>
+
+</div>
+</div>
+<a id="a5655410a344fda0f258468de27475593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5655410a344fda0f258468de27475593">&#9670;&nbsp;</a></span>isActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Shadowable::isActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>isActive - can this object create shadows? </p>
+<dl class="section return"><dt>Returns</dt><dd>- can this object create shadows? </dd></dl>
+
+<p>Implemented in <a class="el" href="class_ground_rect.html#a91e96a0e8ea1d347cefc4fd17d019970">GroundRect</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="shadowable_8h_source.html">shadowable.h</a></li>
 <li>shadowable.cpp</li>

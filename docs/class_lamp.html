@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BoxGameProject: Lamp Class Reference</title>
+<title>BoxGame: Lamp Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">BoxGameProject
-   &#160;<span id="projectnumber">03</span>
+   <div id="projectname">BoxGame
+   &#160;<span id="projectnumber">0.0.3</span>
    </div>
-   <div id="projectbrief">The Shadow game</div>
   </td>
  </tr>
  </tbody>
@@ -79,8 +78,8 @@ Inheritance diagram for Lamp:</div>
  <div class="center">
   <img src="class_lamp.png" usemap="#Lamp_map" alt=""/>
   <map id="Lamp_map" name="Lamp_map">
-<area href="class_lightable.html" title="The Lightable class - the lightable object. " alt="Lightable" shape="rect" coords="0,56,132,80"/>
-<area href="class_goal.html" title="The Goal class - the class of interactive object QGraphicsEllipseItem - this Object is Circle in QGra..." alt="Goal" shape="rect" coords="142,56,274,80"/>
+<area href="class_interactavable.html" alt="Interactavable" shape="rect" coords="142,56,274,80"/>
+<area href="class_lightable.html" title="The Lightable class - the lightable object. " alt="Lightable" shape="rect" coords="284,56,416,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -90,17 +89,19 @@ Public Slots</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lamp.html#acd0e92a05c9520414b4bcaf57fba47f8">stopActive</a> ()</td></tr>
 <tr class="memdesc:acd0e92a05c9520414b4bcaf57fba47f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">stopActive - reactivate this interactive object <br /></td></tr>
 <tr class="separator:acd0e92a05c9520414b4bcaf57fba47f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_slots_class_goal"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_class_goal')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="class_goal.html">Goal</a></td></tr>
-<tr class="memitem:aba441c6008ecbd6865f9768bd89fe6dc inherit pub_slots_class_goal"><td class="memItemLeft" align="right" valign="top"><a id="aba441c6008ecbd6865f9768bd89fe6dc"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_goal.html#aba441c6008ecbd6865f9768bd89fe6dc">stopActive</a> ()</td></tr>
-<tr class="memdesc:aba441c6008ecbd6865f9768bd89fe6dc inherit pub_slots_class_goal"><td class="mdescLeft">&#160;</td><td class="mdescRight">stopActive - reactivate this interactive object <br /></td></tr>
-<tr class="separator:aba441c6008ecbd6865f9768bd89fe6dc inherit pub_slots_class_goal"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:acb4364fbe55c127e5045c37a74879ce1"><td class="memItemLeft" align="right" valign="top"><a id="acb4364fbe55c127e5045c37a74879ce1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Lamp</b> (QObject *parent=0)</td></tr>
+<tr class="separator:acb4364fbe55c127e5045c37a74879ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a019f4e2ca676da164c85c69e9edc7d12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lamp.html#a019f4e2ca676da164c85c69e9edc7d12">Lamp</a> (qreal radius, QPointF initPos, bool on)</td></tr>
 <tr class="memdesc:a019f4e2ca676da164c85c69e9edc7d12"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_lamp.html" title="The Lamp class - the interactive object, that can turn ON/OFF and create shadows for other objects...">Lamp</a> - creating lamp.  <a href="#a019f4e2ca676da164c85c69e9edc7d12">More...</a><br /></td></tr>
 <tr class="separator:a019f4e2ca676da164c85c69e9edc7d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8b861317da5c33bf54359164f9c7a26"><td class="memItemLeft" align="right" valign="top"><a id="ab8b861317da5c33bf54359164f9c7a26"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lamp.html#ab8b861317da5c33bf54359164f9c7a26">~Lamp</a> ()</td></tr>
+<tr class="memdesc:ab8b861317da5c33bf54359164f9c7a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">~Lamp - deleting this interactive lamp <br /></td></tr>
+<tr class="separator:ab8b861317da5c33bf54359164f9c7a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7d01321c7488d774079d8e1411b2521"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lamp.html#ac7d01321c7488d774079d8e1411b2521">getLight</a> ()</td></tr>
 <tr class="memdesc:ac7d01321c7488d774079d8e1411b2521"><td class="mdescLeft">&#160;</td><td class="mdescRight">getLight - getting coordinates of the center  <a href="#ac7d01321c7488d774079d8e1411b2521">More...</a><br /></td></tr>
 <tr class="separator:ac7d01321c7488d774079d8e1411b2521"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,29 +115,18 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lamp.html#a2260a5aaa65639393042f79164dd0fb1">releaseAction</a> ()</td></tr>
 <tr class="memdesc:a2260a5aaa65639393042f79164dd0fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">releaseAction - processing interacting <br /></td></tr>
 <tr class="separator:a2260a5aaa65639393042f79164dd0fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_goal"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_goal')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_goal.html">Goal</a></td></tr>
-<tr class="memitem:a6eba51d9035d01055dbd2c4f9e288a51 inherit pub_methods_class_goal"><td class="memItemLeft" align="right" valign="top"><a id="a6eba51d9035d01055dbd2c4f9e288a51"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Goal</b> (QObject *parent=0)</td></tr>
-<tr class="separator:a6eba51d9035d01055dbd2c4f9e288a51 inherit pub_methods_class_goal"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5daa289f61d263fd032e7ab9dd0eb3a inherit pub_methods_class_goal"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_goal.html#ad5daa289f61d263fd032e7ab9dd0eb3a">Goal</a> (QPointF initPos)</td></tr>
-<tr class="memdesc:ad5daa289f61d263fd032e7ab9dd0eb3a inherit pub_methods_class_goal"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_goal.html" title="The Goal class - the class of interactive object QGraphicsEllipseItem - this Object is Circle in QGra...">Goal</a> - create interactive Object.  <a href="class_goal.html#ad5daa289f61d263fd032e7ab9dd0eb3a">More...</a><br /></td></tr>
-<tr class="separator:ad5daa289f61d263fd032e7ab9dd0eb3a inherit pub_methods_class_goal"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header signals_class_goal"><td colspan="2" onclick="javascript:toggleInherit('signals_class_goal')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_goal.html">Goal</a></td></tr>
-<tr class="memitem:ac5ac723a07f20f7ed2ced8b3e620e2b4 inherit signals_class_goal"><td class="memItemLeft" align="right" valign="top"><a id="ac5ac723a07f20f7ed2ced8b3e620e2b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>activeSignal</b> ()</td></tr>
-<tr class="separator:ac5ac723a07f20f7ed2ced8b3e620e2b4 inherit signals_class_goal"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_class_goal"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_goal')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_goal.html">Goal</a></td></tr>
-<tr class="memitem:a4d7d4d057f7d3d9e592c923affdf00e2 inherit pro_attribs_class_goal"><td class="memItemLeft" align="right" valign="top"><a id="a4d7d4d057f7d3d9e592c923affdf00e2"></a>
-QTimer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_goal.html#a4d7d4d057f7d3d9e592c923affdf00e2">timer</a></td></tr>
-<tr class="memdesc:a4d7d4d057f7d3d9e592c923affdf00e2 inherit pro_attribs_class_goal"><td class="mdescLeft">&#160;</td><td class="mdescRight">timer - block this object with some time after interact <br /></td></tr>
-<tr class="separator:a4d7d4d057f7d3d9e592c923affdf00e2 inherit pro_attribs_class_goal"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a03ec3a54cdb704ba5247b1dd165097 inherit pro_attribs_class_goal"><td class="memItemLeft" align="right" valign="top"><a id="a1a03ec3a54cdb704ba5247b1dd165097"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_goal.html#a1a03ec3a54cdb704ba5247b1dd165097">active</a></td></tr>
-<tr class="memdesc:a1a03ec3a54cdb704ba5247b1dd165097 inherit pro_attribs_class_goal"><td class="mdescLeft">&#160;</td><td class="mdescRight">active - this object is interacting now? <br /></td></tr>
-<tr class="separator:a1a03ec3a54cdb704ba5247b1dd165097 inherit pro_attribs_class_goal"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_interactavable"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_interactavable')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_interactavable.html">Interactavable</a></td></tr>
+<tr class="memitem:ad101b6996d450c87d0b5b74acfe4f7d4 inherit pro_attribs_class_interactavable"><td class="memItemLeft" align="right" valign="top"><a id="ad101b6996d450c87d0b5b74acfe4f7d4"></a>
+QTimer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interactavable.html#ad101b6996d450c87d0b5b74acfe4f7d4">timer</a></td></tr>
+<tr class="memdesc:ad101b6996d450c87d0b5b74acfe4f7d4 inherit pro_attribs_class_interactavable"><td class="mdescLeft">&#160;</td><td class="mdescRight">timer - block this object with some time after interact <br /></td></tr>
+<tr class="separator:ad101b6996d450c87d0b5b74acfe4f7d4 inherit pro_attribs_class_interactavable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d325c397b4cbc837576251a7dcb18ff inherit pro_attribs_class_interactavable"><td class="memItemLeft" align="right" valign="top"><a id="a3d325c397b4cbc837576251a7dcb18ff"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interactavable.html#a3d325c397b4cbc837576251a7dcb18ff">active</a></td></tr>
+<tr class="memdesc:a3d325c397b4cbc837576251a7dcb18ff inherit pro_attribs_class_interactavable"><td class="mdescLeft">&#160;</td><td class="mdescRight">active - this object is interacting now? <br /></td></tr>
+<tr class="separator:a3d325c397b4cbc837576251a7dcb18ff inherit pro_attribs_class_interactavable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_lamp.html" title="The Lamp class - the interactive object, that can turn ON/OFF and create shadows for other objects...">Lamp</a> class - the interactive object, that can turn ON/OFF and create shadows for other objects. </p>

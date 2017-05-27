@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BoxGameProject: Class Members</title>
+<title>BoxGame: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">BoxGameProject
-   &#160;<span id="projectnumber">03</span>
+   <div id="projectname">BoxGame
+   &#160;<span id="projectnumber">0.0.3</span>
    </div>
-   <div id="projectbrief">The Shadow game</div>
   </td>
  </tr>
  </tbody>
@@ -64,11 +63,13 @@ $(function() {
 
 <h3><a id="index_a"></a>- a -</h3><ul>
 <li>active
-: <a class="el" href="class_goal.html#a1a03ec3a54cdb704ba5247b1dd165097">Goal</a>
+: <a class="el" href="class_interactavable.html#a3d325c397b4cbc837576251a7dcb18ff">Interactavable</a>
+</li>
+<li>activeSignal()
+: <a class="el" href="class_goal.html#ac5ac723a07f20f7ed2ced8b3e620e2b4">Goal</a>
 </li>
 <li>addGoal()
-: <a class="el" href="class_circle_object.html#a3f1430e198cbdca2eb44907a3642ac8c">CircleObject</a>
-, <a class="el" href="class_scene.html#a8091b2a5093e61167ba8a2c65e752f00">Scene</a>
+: <a class="el" href="class_scene.html#a8091b2a5093e61167ba8a2c65e752f00">Scene</a>
 </li>
 <li>addGround()
 : <a class="el" href="class_scene.html#a0db2254e436d42e4ca4760a19526b674">Scene</a>
@@ -76,11 +77,15 @@ $(function() {
 <li>addHero()
 : <a class="el" href="class_scene.html#a9411952f68a895fbe68ab7f5f8093ffe">Scene</a>
 </li>
+<li>addInteract()
+: <a class="el" href="class_circle_object.html#af9a40fe2f0fd557b94977b3d0a19b96d">CircleObject</a>
+</li>
 <li>addLamp()
 : <a class="el" href="class_scene.html#ab806bad2a97ccf4e3f2414f89b03f3c9">Scene</a>
 </li>
 <li>addShadow()
 : <a class="el" href="class_ground_rect.html#a61ff4cc62e4cdf28fc93cc26e974a96d">GroundRect</a>
+, <a class="el" href="class_shadowable.html#a4e6f4d386cd48c6ef39f0bdc85f1ce86">Shadowable</a>
 </li>
 <li>advance()
 : <a class="el" href="class_circle_object.html#a2cf2633c0bbd6a13f406d37f11d3197c">CircleObject</a>
@@ -110,6 +115,10 @@ $(function() {
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getBody()
+: <a class="el" href="class_circle_object.html#a217c54988708fce7663b06576f3ab85e">CircleObject</a>
+, <a class="el" href="class_ground_rect.html#a0ea4cbb50aab1a94b20e5d0eab214201">GroundRect</a>
+</li>
 <li>getHero()
 : <a class="el" href="class_scene.html#ab2af48cac184b1dfa776c7bb050c9c83">Scene</a>
 </li>
@@ -130,6 +139,9 @@ $(function() {
 <li>Goal()
 : <a class="el" href="class_goal.html#ad5daa289f61d263fd032e7ab9dd0eb3a">Goal</a>
 </li>
+<li>goalAction()
+: <a class="el" href="class_circle_object.html#accb6def977382516aae2c313119f70d7">CircleObject</a>
+</li>
 <li>GroundRect()
 : <a class="el" href="class_ground_rect.html#a28d6063a4a0fdc99f5fd149d639b011f">GroundRect</a>
 </li>
@@ -142,6 +154,7 @@ $(function() {
 , <a class="el" href="class_ground_rect.html#a91e96a0e8ea1d347cefc4fd17d019970">GroundRect</a>
 , <a class="el" href="class_lamp.html#a1c6a53146b873c66559973823786ea1a">Lamp</a>
 , <a class="el" href="class_lightable.html#a01bd5e9808930ea5516e3fa5d6351d40">Lightable</a>
+, <a class="el" href="class_shadowable.html#a5655410a344fda0f258468de27475593">Shadowable</a>
 </li>
 <li>isOn()
 : <a class="el" href="class_lamp.html#a97aea82631b05c6c7bbd1a897a292905">Lamp</a>
@@ -185,6 +198,7 @@ $(function() {
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>releaseAction()
 : <a class="el" href="class_goal.html#adc9792c33efb4962cbc63c6ed5a00cc0">Goal</a>
+, <a class="el" href="class_interactavable.html#a95ade68c3aacf8c685fdf29ee66ad2f8">Interactavable</a>
 , <a class="el" href="class_lamp.html#a2260a5aaa65639393042f79164dd0fb1">Lamp</a>
 </li>
 <li>rightForce()
@@ -215,7 +229,7 @@ $(function() {
 
 <h3><a id="index_t"></a>- t -</h3><ul>
 <li>timer
-: <a class="el" href="class_goal.html#a4d7d4d057f7d3d9e592c923affdf00e2">Goal</a>
+: <a class="el" href="class_interactavable.html#ad101b6996d450c87d0b5b74acfe4f7d4">Interactavable</a>
 </li>
 <li>toB2()
 : <a class="el" href="class_common.html#af67b6220ee1314ea503deb76b2d8271a">Common</a>
@@ -229,6 +243,19 @@ $(function() {
 </li>
 <li>upReleased()
 : <a class="el" href="class_circle_object.html#a9cad2fefd3cfa586c70bb9ca16539bd0">CircleObject</a>
+</li>
+</ul>
+
+
+<h3><a id="index_0x7e"></a>- ~ -</h3><ul>
+<li>~CircleObject()
+: <a class="el" href="class_circle_object.html#a779c08940b4d803a4563a169d9173a3e">CircleObject</a>
+</li>
+<li>~Goal()
+: <a class="el" href="class_goal.html#a0719b571c7c6995948a2c55137459535">Goal</a>
+</li>
+<li>~Lamp()
+: <a class="el" href="class_lamp.html#ab8b861317da5c33bf54359164f9c7a26">Lamp</a>
 </li>
 </ul>
 </div><!-- contents -->
